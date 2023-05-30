@@ -22,8 +22,8 @@ jobs:
           cmake
           ninja-build
         update: true
-        
-    - uses: actions/checkout@v1
+          
+    - uses: actions/checkout@v2
        
     - name: CMake configure
       run: |
@@ -34,4 +34,3 @@ jobs:
       run: |
         cd build
         ninja
-
