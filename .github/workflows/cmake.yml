@@ -23,8 +23,13 @@ jobs:
           cmake
           ninja-build
        
-    - name: ShaderToy
+    - name: CMake configure
       run: |
-        cd ../build
-        cmake .. -G"Ninja"
+        cd build
+        cmake .. -GNinja
+
+    - name: Out
+      run: |
+        cd build
         ninja
+
