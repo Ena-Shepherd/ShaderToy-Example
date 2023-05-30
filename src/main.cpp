@@ -4,7 +4,7 @@
 
  Creation Date: 30-05-2023 10:48:03
 
- Description :
+ Description : Main backend rendering engine, uses SFML window & builtin OpenGL implementations
 
 */
 
@@ -15,11 +15,22 @@
 using namespace sf;
 
 int main(int ac, char **av) {
+
+    if (ac < 2) {
+        std::cout << "Usage : ./shader-demo <shaderName>" << std::endl;
+        return EXIT_SUCCESS;
+    }
+
 	const float winW = 1920;
 	const float winH = 1080;
+    
+    ContextSettings settings;
+    settings.antialiasingLevel = 8; // <---- Disable when you use heavy shaders
 
-	RenderWindow window(VideoMode(winW, winH), "SFML Shader Example"/*, Style::Fullscreen*/);
+	RenderWindow window(VideoMode(winW, winH), "SFML Shader Example", Style::Close /* | Style::Fullscreen*/, settings);
 	window.setMouseCursorVisible(false); // hide the cursor
+    window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
 
 	// Create a texture and a sprite for the shader
 	Texture tex;
@@ -53,7 +64,7 @@ int main(int ac, char **av) {
 		while (window.pollEvent(event)) {
 			// Exit the app when a key is pressed
 			if (event.type == Event::KeyPressed) 
-				window.close();
+				return EXIT_SUCCESS;
 		}
 
 		// Set the others parameters who need to be updated every frames

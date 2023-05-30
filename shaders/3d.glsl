@@ -10,16 +10,17 @@
 
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 
 float distLine(vec3 ro, vec3 rd, vec3 pnt) {
     
     return length(cross(pnt - ro, rd)) / length(rd);
 }
 
-void main( out vec4 fragColor, in vec2 fragCoord )
+void main()
 {
     // Normalized pixel coordinates (from 0 to 1)
-    vec2 uv = fragCoord/iResolution.xy;
+    vec2 uv = gl_FragCoord/iResolution.xy;
     uv -= .5;
     
     uv.x *= iResolution.x / iResolution.y;
@@ -35,5 +36,5 @@ void main( out vec4 fragColor, in vec2 fragCoord )
     
     d = smoothstep(.1, .002, d);
     // Output to screen
-    fragColor = vec4(d);
+    gl_FragColor = vec4(d);
 }

@@ -1,20 +1,10 @@
-/*
-
- Author: Yannis STEFANELLI
-
- Creation Date: 30-05-2023 12:29:45
-
- Description :
-
-*/
-
 //thank for https://www.shadertoy.com/view/MdX3Rr by iq
 
 #define PI 3.14159265359
 
 uniform float iTime;
-uniform vec2 iMouse;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 
 vec2 hash( vec2 p )
 {
@@ -130,7 +120,7 @@ vec3 render( in vec3 ro, in vec3 rd )
         vec3 halfDir = normalize(lightDir + viewDir);
         float specAngle = max(dot(halfDir, normal), 0.0);
         float specular1 = pow(specAngle, shininess);
-        float specular2 = pow(specAngle, shininess / 2.0) * noise(pos.xz * 10000.0) * 1.0;// * pow(texture(iChannel0,pos.xz * 10.0).x,3.0);
+        float specular2 = pow(specAngle, shininess / 2.0) * noise(pos.xz * 10000.0) * 1.0f;// * pow(texture(iChannel0,pos.xz * 10.0).x,3.0);
 
         vec3 diff = sandColor * lambertian * lightColor;
         vec3 spec = (specular1 *0.3 + specular2 * 0.2) * lightColor;
@@ -143,7 +133,7 @@ vec3 render( in vec3 ro, in vec3 rd )
     return col;
 }
 
-void main( out vec4 fragColor, in vec2 fragCoord )
+void main()
 {
     float time = iTime * 0.5;
     //float yaw = time;//iMouse.x * 0.05;
@@ -161,7 +151,7 @@ void main( out vec4 fragColor, in vec2 fragCoord )
     	pitch = clamp(iMouse.y  * 2.0 /iResolution.y,-PI * 0.5,PI * 0.5);
     }
     
-    vec2 p0 = fragCoord.xy / iResolution.xy;
+    vec2 p0 = gl_FragCoord.xy / iResolution.xy;
     p0.x *= iResolution.x/iResolution.y;
     
     vec3 ro = 1.1*vec3(2.5*sin(0.25*yaw),2.5 * cos(pitch),2.5*cos(0.25*yaw));
@@ -172,5 +162,5 @@ void main( out vec4 fragColor, in vec2 fragCoord )
 
     vec3 col = render( vec3(time,1.8,0.0), rd );
     
-    fragColor = vec4(col,1);
+    gl_FragColor = vec4(col,1);
 }
