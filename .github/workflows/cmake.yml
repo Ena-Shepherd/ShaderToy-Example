@@ -22,14 +22,9 @@ jobs:
           build-essential
           cmake
           ninja-build
-
-    - name: CMake configure
-      run: |
-        pwd
-        ls
-        cd ./build
-        cmake .. -GNinja
+       
     - name: ShaderToy
       run: |
         cd build
+        cmake .. -GNinja
         ninja
