@@ -1,0 +1,32 @@
+name: Linux
+
+# Trigger this workflow on push or pull request
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build and test
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Install dependencies
+      uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages:
+          git
+          build-essential
+          cmake
+
+    - name: CMake configure
+      run: |
+        cd build
+        cmake .. -GNinja
+    - name: ShaderToy
+      run: |
+        cd build
+        ninja
