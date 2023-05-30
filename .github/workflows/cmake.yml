@@ -21,10 +21,11 @@ jobs:
           git
           build-essential
           cmake
+          ninja-build
 
     - name: CMake configure
       run: |
-        cd build
+        cd ./build
         cmake .. -GNinja
     - name: ShaderToy
       run: |
