@@ -1,6 +1,6 @@
 name: Linux
 
-# Trigger this workflow on push or pull request
+# Déclencher ce flux de travail lors d'un push ou d'une pull request
 on: [push, pull_request]
 
 jobs:
@@ -15,14 +15,10 @@ jobs:
 
     steps:
     - name: Install dependencies
-      with:
-        packages:
-          git
-          build-essential
-          cmake
-          ninja-build
-        update: true
-          
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git build-essential cmake ninja-build
+
     - uses: actions/checkout@v2
        
     - name: CMake configure
