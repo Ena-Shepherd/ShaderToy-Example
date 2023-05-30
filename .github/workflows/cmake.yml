@@ -26,6 +26,6 @@ jobs:
     - name: ShaderToy
       run: |
         pwd
-        cd build
+        cd ./ShaderToy-Example/build
         cmake .. -GNinja
         ninja
