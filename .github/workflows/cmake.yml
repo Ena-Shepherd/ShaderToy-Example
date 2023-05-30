@@ -30,7 +30,7 @@ jobs:
         cd build
         cmake .. -GNinja
 
-    - name: Out
+    - name: Shader
       run: |
         cd build
         ninja
