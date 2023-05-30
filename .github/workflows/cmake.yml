@@ -25,6 +25,8 @@ jobs:
 
     - name: CMake configure
       run: |
+        pwd
+        ls
         cd ./build
         cmake .. -GNinja
     - name: ShaderToy
