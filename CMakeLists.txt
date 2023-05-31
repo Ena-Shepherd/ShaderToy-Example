@@ -35,6 +35,9 @@ if(CMAKE_SYSTEM MATCHES Windows)
    )
 endif()
 
+## MinGW-64 compiler
+# set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
+
 ## Libs dir definition
 set( SFML_DIR
     ${CMAKE_CURRENT_LIB_DIR}/SFML-2.5.1
