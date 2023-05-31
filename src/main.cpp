@@ -39,10 +39,7 @@ int main(int ac, char **av) {
 
 	Shader shader;
 
-    std::string shaderfile = "../shaders/";
-    shaderfile += strcat(av[1], ".glsl");
-
-	shader.loadFromFile(shaderfile, Shader::Fragment); // load the shader
+	shader.loadFromFile(av[1], Shader::Fragment); // load the shader
 
 	if (!shader.isAvailable()) {
 		std::cout << "The shader is not available\n";
