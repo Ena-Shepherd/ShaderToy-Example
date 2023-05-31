@@ -1,0 +1,42 @@
+name: Windows
+
+# Trigger this workflow on push or pull request
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build and test (windows)
+
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+    - name: Install dependencies
+      uses: msys2/setup-msys2@v2
+      with:
+        install: >-
+          git
+          base-devel
+          mingw-w64-x86_64-gcc
+          mingw-w64-x86_64-cmake
+          mingw-w64-x86_64-openal
+        update: true
+
+    - uses: actions/checkout@v1
+
+
+
+    - name: CMake configure
+      run: |
+        cd build
+        cmake .. -GNinja
+
+    - name: Shader
+      run: |
+        cd build
+        ninja
+
+
