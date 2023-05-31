@@ -20,9 +20,20 @@ project(${PROJECT_NAME} CXX)
 # Source files
 file(GLOB SOURCES "src/*.cpp")
 
-set( CMAKE_CURRENT_LIB_DIR
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs
-)
+if(CMAKE_HOST_SYSTEM MATCHES Linux)
+   message(STATUS "Build host runs Linux")
+
+    set( CMAKE_CURRENT_LIB_DIR
+        ${CMAKE_CURRENT_SOURCE_DIR}/libs
+    )
+endif()
+
+if(CMAKE_SYSTEM MATCHES Windows)
+   message(STATUS "Target system is Windows")
+   set( CMAKE_CURRENT_LIB_DIR
+        ${CMAKE_CURRENT_SOURCE_DIR}/windows-libs
+   )
+endif()
 
 ## Libs dir definition
 set( SFML_DIR
