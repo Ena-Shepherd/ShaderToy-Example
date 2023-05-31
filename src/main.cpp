@@ -27,7 +27,7 @@ int main(int ac, char **av) {
     ContextSettings settings;
     settings.antialiasingLevel = 8; // <---- Disable when you use heavy shaders
 
-	RenderWindow window(VideoMode(winW, winH), "SFML Shader Example", Style::Close /* | Style::Fullscreen*/, settings);
+	RenderWindow window(VideoMode(winW, winH), "SFML Shader Example", Style::Close | Style::Fullscreen, settings);
 	window.setMouseCursorVisible(false); // hide the cursor
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
