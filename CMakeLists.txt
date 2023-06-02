@@ -53,6 +53,18 @@ link_directories(
     ${SFML_DIR}/lib    
 )
 
+add_compile_options(
+    -g3
+    -Wno-unused-result
+)
+
+if(CMAKE_SYSTEM MATCHES Windows)
+    add_compile_options(
+        -static-libgcc
+        -static-libstdc++
+    )
+endif()
+
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_link_libraries(
@@ -60,9 +72,4 @@ target_link_libraries(
     sfml-graphics
     sfml-window
     sfml-system
-)
-
-add_compile_options(
-    -g3
-    -Wno-unused-result
 )
