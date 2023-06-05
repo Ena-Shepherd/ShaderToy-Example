@@ -53,17 +53,16 @@ link_directories(
     ${SFML_DIR}/lib    
 )
 
+if(CMAKE_SYSTEM MATCHES Windows)
+    add_compile_options(
+        -static-libgcc -static-libstdc++ -static
+    )
+endif()
+
 add_compile_options(
     -g3
     -Wno-unused-result
 )
-
-if(CMAKE_SYSTEM MATCHES Windows)
-    add_compile_options(
-        -static-libgcc
-        -static-libstdc++
-    )
-endif()
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
