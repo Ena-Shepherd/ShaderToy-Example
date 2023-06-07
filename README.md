@@ -7,10 +7,8 @@ This repo is a playground for experimenting with GLSL language
 - **Linux** :
   - `./shader-demo <relative_.glsl_path>`<br/><br/>
 - **Windows** :
-  - Right-click **shader-demo.exe**
-  - new Shortcut 
-  - Properties
-  - target : `<shader-demo.exe_current_location> <relative_.glsl_path>`
+  - **Executables**
+  - Execute any shortcut
   <br/>
 
 ## Preview
